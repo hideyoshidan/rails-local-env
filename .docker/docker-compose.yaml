@@ -1,11 +1,29 @@
 version: '3.9'
 
 services:
-  app:
+  rails-app:
     build: 
       context: ../
-      dockerfile: .docker/Dockerfile
+      dockerfile: .docker/application/Dockerfile
     ports:
-      - 80:3000
+      - 3000:3000
     volumes:
       - ../src:/usr/src/app
+    depends_on:
+      - rails-database
+
+  rails-database:
+    container_name: bas-mysql
+    build: 
+      context: ../
+      dockerfile: .docker/database/Dockerfile
+    ports:
+      - "13306:3306"
+    volumes:
+      # MySQLデータ
+      - .docker/mysql/data:/var/lib/mysql
+      # 初期化用のSQL配置
+      - .docker/mysql/sql:/docker-entrypoint-initdb.d
+    tty: true
+    restart: always
+  

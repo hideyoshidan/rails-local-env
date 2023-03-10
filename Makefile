@@ -1,14 +1,14 @@
-APP=payment
+APP=rails-app
 THIS_DIR:=`pwd`
 # not using compose
 all:
 	make build
 	make run
 build:
-	docker build --no-cache -t ${APP}:latest -f ./.docker/Dockerfile .
+	docker build --no-cache -t ${APP}:latest -f ./.docker/application/Dockerfile .
 run:
 	docker rm -f ${APP}
-	docker run --name ${APP} -v ${THIS_DIR}/src:/usr/src/app -d -p 80:3000 ${APP} "rails server -b 0.0.0.0"
+	docker run --name ${APP} -v ${THIS_DIR}/src:/usr/src/app -d -p 3000:3000 ${APP} "rails server -b 0.0.0.0"
 down:
 	docker down ${APP}
 start:
@@ -37,3 +37,5 @@ cdown:
 	cd .docker && docker compose down
 cps:
 	cd .docker && docker compose ps
+cexec:
+	cd .docker && docker compose exec rails-app /bin/bash
