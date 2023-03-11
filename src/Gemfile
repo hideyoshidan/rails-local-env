@@ -44,6 +44,11 @@ gem "bootsnap", require: false
 
 gem 'dotenv-rails', '~> 2.6'
 
+gem 'discard', '~> 1.2', '>= 1.2.1'
+
+gem 'jwt', '~> 2.7'
+gem 'active_model_serializers', '~> 0.10.2'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
