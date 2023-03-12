@@ -21,9 +21,9 @@ services:
       - "13306:3306"
     volumes:
       # MySQLデータ
-      - .docker/mysql/data:/var/lib/mysql
+      - ./database/data:/var/lib/mysql
       # 初期化用のSQL配置
-      - .docker/mysql/sql:/docker-entrypoint-initdb.d
+      - ./database/sql:/docker-entrypoint-initdb.d
     tty: true
     restart: always
   

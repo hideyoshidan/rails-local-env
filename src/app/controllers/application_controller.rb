@@ -15,7 +15,7 @@ class ApplicationController < ActionController::API
 
   # 現在のUserをJWTか取得
   def current_user
-    @current_user ||= UserAuthenticator.call(request.headers)
+    @current_user ||= JwtService::UserAuthenticator.authenticate(request.headers)
   end
 
   # https://26gram.com/private-protected-in-ruby
