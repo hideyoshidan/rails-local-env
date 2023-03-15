@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
     raise AuthenticationError unless current_user
   end
 
-  # 現在のUserをJWTか取得
+  # 現在のUserをJWTから取得
   def current_user
     @current_user ||= JwtService::UserAuthenticator.authenticate(request.headers)
   end

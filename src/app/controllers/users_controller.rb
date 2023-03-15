@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate, except: :create
 
   def user_params 
-      params.require(:user).permit(:user_name, :email, :password)
+    params.require(:user).permit(:user_name, :email, :password)
   end
 
   # Get User Data
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save!
-      token = JwtService::JwtTokenProvider.create_new_token({:id => @user.id})
+      token = JwtService::JwtTokenProvider.create_new_token({:id => @user.email})
       render json: {token: token}, status: 200
     end
   end

@@ -32,7 +32,7 @@ module JwtService
     private
       # token払い出し
       def issue_token(payload)
-        JWT.encode(payload, Rails.application.credentials.secret_key_base)
+        JWT.encode payload, Rails.application.credentials.secret_key_base
       end
   end
 
@@ -48,7 +48,7 @@ module JwtService
       # tokenをdecryptして検証をする
       # credentials.yml.enc を使ってdecode
       def decrypt token
-        JWT.decode(token, Rails.application.credentials.secret_key_base)
+        JWT.decode token, Rails.application.credentials.secret_key_base, false
       rescue StandardError
         raise InvalidTokenError
       end

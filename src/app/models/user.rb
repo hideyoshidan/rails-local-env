@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   include Discard::Model
 
+  has_secure_password validations: false
+
   # validations
   validates :user_name,
     presence: true, 
