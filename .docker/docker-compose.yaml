@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   rails-app:
+    container_name: rails-app
     build: 
       context: ../
       dockerfile: .docker/application/Dockerfile
@@ -13,7 +14,7 @@ services:
       - rails-database
 
   rails-database:
-    container_name: bas-mysql
+    container_name: rails-db
     build: 
       context: ../
       dockerfile: .docker/database/Dockerfile
